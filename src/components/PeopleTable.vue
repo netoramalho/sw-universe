@@ -27,11 +27,11 @@ export default {
       search: "",
       headers: [
         { text: "Name", align: "start", value: "name" },
-        { text: "Height (cm)", value: "height" },
-        { text: "Mass (kg)", value: "mass" },
-        { text: "Created", value: "created" },
-        { text: "Edited", value: "edited" },
-        { text: "Planet", value: "planet_name" }
+        { text: "Height (cm)", value: "height", filterable: false },
+        { text: "Mass (kg)", value: "mass", filterable: false },
+        { text: "Created", value: "created", filterable: false },
+        { text: "Edited", value: "edited", filterable: false },
+        { text: "Planet", value: "planet_name", filterable: false }
       ]
     };
   },
