@@ -21,11 +21,5 @@ export const people = {
         state.list.push(item.fields);
       }
     }
-  },
-  getters: {
-    searchByName: state => search => {
-      search = search.toLowerCase();
-      return state.list.filter(person => person.searchString.match(search));
-    }
   }
 };
