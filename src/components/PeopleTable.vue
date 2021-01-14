@@ -90,6 +90,9 @@ section {
   opacity: 0;
   animation: zoomIn 1.5s forwards;
   animation-delay: 1s;
+  @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    background-color: rgba(0, 0, 0, 0.85) !important;
+  }
 }
 .search {
   max-width: 300px;
@@ -99,6 +102,9 @@ section {
   opacity: 0;
   animation: fade 1s forwards;
   animation-delay: 2.5s;
+  @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {
+    background-color: rgba(0, 0, 0, 0.85) !important;
+  }
 }
 
 /deep/
