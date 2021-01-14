@@ -1,8 +1,7 @@
 <template>
-  <div class="home">
-    <h1 class="h1">SW Universe</h1>
+  <section>
     <PeopleTable />
-  </div>
+  </section>
 </template>
 
 <script>

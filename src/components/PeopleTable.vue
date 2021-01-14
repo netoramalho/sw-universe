@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <h3>People Table</h3>
+  <section>
     <v-text-field
+      name="sw_search"
       v-model="search"
       append-icon="mdi-magnify"
-      label="Search"
+      label="Search by name"
       single-line
       hide-details
+      filled
+      class="search"
+      dark
     ></v-text-field>
     <v-data-table
       :headers="headers"
@@ -15,7 +18,8 @@
       :search="search"
       hide-default-footer
       dark
-      class="elevation-1"
+      mobile-breakpoint="1000"
+      class="table"
     >
       <template v-slot:item.created="{ item }">
         {{ $date(item.created).format("DD/MM/YYYY") }},
@@ -26,7 +30,7 @@
         {{ $date(item.edited).fromNow() }}
       </template>
     </v-data-table>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -52,4 +56,57 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+@keyframes zoomIn {
+  from {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+section {
+  padding: 20px;
+}
+.table {
+  max-width: 1000px;
+  margin: 0 auto;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(20px);
+  border-radius: 10px;
+  transform: scale(0.2);
+  opacity: 0;
+  animation: zoomIn 1.5s forwards;
+  animation-delay: 1s;
+}
+.search {
+  max-width: 300px;
+  margin: 40px auto !important;
+  background-color: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  animation: fade 1s forwards;
+  animation-delay: 2.5s;
+}
+
+/deep/
+  .theme--dark.v-data-table
+  > .v-data-table__wrapper
+  > table
+  > tbody
+  > tr:hover:not(.v-data-table__expanded__content):not(.v-data-table__empty-wrapper) {
+  background: rgba(60, 60, 60, 0.3);
+}
+</style>
