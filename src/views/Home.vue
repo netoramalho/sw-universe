@@ -15,6 +15,10 @@ export default {
   components: {
     SearchField,
     PeopleTable
+  },
+  created() {
+    this.$store.dispatch("planets/initialize");
+    this.$store.dispatch("people/initialize");
   }
 };
 </script>
