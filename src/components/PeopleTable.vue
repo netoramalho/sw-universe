@@ -16,7 +16,16 @@
       hide-default-footer
       dark
       class="elevation-1"
-    ></v-data-table>
+    >
+      <template v-slot:item.created="{ item }">
+        {{ $date(item.created).format("DD/MM/YYYY") }},
+        {{ $date(item.created).fromNow() }}
+      </template>
+      <template v-slot:item.edited="{ item }">
+        {{ $date(item.edited).format("DD/MM/YYYY") }},
+        {{ $date(item.edited).fromNow() }}
+      </template>
+    </v-data-table>
   </div>
 </template>
 
