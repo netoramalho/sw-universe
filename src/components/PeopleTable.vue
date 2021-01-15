@@ -29,12 +29,28 @@
         {{ $date(item.edited).format("DD/MM/YYYY") }},
         {{ $date(item.edited).fromNow() }}
       </template>
+      <template v-slot:item.planet_name="{ item }">
+        <v-btn
+          color="darken-1"
+          text
+          :disabled="item.planet_name === 'unknown'"
+          @click="openPlanetDialog(item.homeworld)"
+          >{{ item.planet_name }}</v-btn
+        >
+      </template>
     </v-data-table>
+
+    <PlanetDialog v-model="planetDialogDisplay" :id="planetDialogId" />
   </section>
 </template>
 
 <script>
+import PlanetDialog from "@/components/PlanetDialog";
+
 export default {
+  components: {
+    PlanetDialog
+  },
   data() {
     return {
       search: "",
@@ -44,13 +60,30 @@ export default {
         { text: "Mass (kg)", value: "mass", filterable: false },
         { text: "Created", value: "created", filterable: false },
         { text: "Edited", value: "edited", filterable: false },
-        { text: "Planet", value: "planet_name", filterable: false }
-      ]
+        {
+          text: "Planet",
+          value: "planet_name",
+          filterable: false,
+          align: "center"
+        }
+      ],
+      planetDialogDisplay: false,
+      planetDialogId: 0
     };
+  },
+  methods: {
+    openPlanetDialog(planetId) {
+      this.planetDialogDisplay = true;
+      this.planetDialogId = planetId;
+    }
   },
   computed: {
     results() {
       return this.$store.state.people.list;
+    },
+    planet() {
+      if (!this.selectedPlanet) return false;
+      return this.$store.getters["planets/getById"](this.selectedPlanet);
     }
   }
 };
