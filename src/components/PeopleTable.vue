@@ -80,10 +80,6 @@ export default {
   computed: {
     results() {
       return this.$store.state.people.list;
-    },
-    planet() {
-      if (!this.selectedPlanet) return false;
-      return this.$store.getters["planets/getById"](this.selectedPlanet);
     }
   }
 };
