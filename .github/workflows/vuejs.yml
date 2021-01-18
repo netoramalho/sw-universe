@@ -1,0 +1,27 @@
+name: VueJs
+
+on:
+  push:
+    branches: [ githubactions ]
+  pull_request:
+    branches: [ githubactions ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: VueJs Build and Deploy
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Enforce coding standards
+        run: npx vue-cli-service lint --no-fix
+
+      - name: Run Component tests
+        run: npm run test:unit
+
+      - name: Run E2E tests
+        run: npx vue-cli-service test:e2e --headless
