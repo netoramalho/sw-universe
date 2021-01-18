@@ -10,7 +10,6 @@ export const people = {
       for (const item of peopleData) {
         const planet = rootGetters["planets/getById"](item.fields.homeworld);
         if (planet) item.fields.planet_name = planet.name;
-        item.fields.searchString = item.fields.name.toLowerCase();
       }
       commit("SET", peopleData);
     }
